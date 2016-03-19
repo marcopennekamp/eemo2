@@ -1,0 +1,8 @@
+Repeats the input.
+(^-^)/
+    (o-o)           We need to read the first character before we start the loop.
+    (+-+) (^-^)/
+        (°o°)       Output the current char.
+        (o-o)       The loop terminates, since the register is filled with a 0 if
+    \(._.)          the input is already read fully.
+\(._.)
