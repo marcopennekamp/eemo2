@@ -12,7 +12,7 @@ class ToAstVisitor extends EemoBaseVisitor[Statement] {
   }
 
   override def visitConversation(ctx: ConversationContext): Conversation = {
-    val statementContexts: Seq[StatementContext] = ctx.statement()
+    val statementContexts: List[StatementContext] = ctx.statement().toList
     Conversation(statementContexts.map(visitStatement))
   }
 
@@ -21,12 +21,12 @@ class ToAstVisitor extends EemoBaseVisitor[Statement] {
       // Simple statement.
       case n: TerminalNode =>
         n.getSymbol.getType match {
-          case Increment => Command.Increment()
-          case Double => Command.Double()
-          case Add => Command.Add()
-          case Decrement => Command.Decrement()
+          case Increment => Command.Add(1)
+          case Double => Command.Mul(2)
+          case Add => Command.StackAdd()
+          case Decrement => Command.Add(-1)
           case Halve => Command.Halve()
-          case Sub => Command.Sub()
+          case Sub => Command.StackSub()
           case Reset => Command.Reset()
           case MoveToLeft => Command.MoveToLeft()
           case MoveToRight => Command.MoveToRight()

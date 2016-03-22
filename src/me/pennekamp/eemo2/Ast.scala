@@ -2,17 +2,16 @@ package me.pennekamp.eemo2
 
 trait Statement
 
-case class Conversation(statements: Seq[Statement]) extends Statement
+case class Conversation(statements: List[Statement]) extends Statement
 
 trait Command extends Statement
 
 object Command {
-  case class Increment() extends Command
-  case class Double() extends Command
-  case class Add() extends Command
-  case class Decrement() extends Command
+  case class Add(a: Int) extends Command
+  case class Mul(a: Int) extends Command
   case class Halve() extends Command
-  case class Sub() extends Command
+  case class StackAdd() extends Command
+  case class StackSub() extends Command
   case class Reset() extends Command
   case class MoveToLeft() extends Command
   case class MoveToRight() extends Command

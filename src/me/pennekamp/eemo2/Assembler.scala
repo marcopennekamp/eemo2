@@ -56,12 +56,11 @@ class Assembler(ast: Conversation, writer: Writer, name: String) {
     import Command._
 
     val js = command match {
-      case Increment() => "r += 1;"
-      case Double() => "r *= 2;"
-      case Add() => "r += get_ltop();"
-      case Decrement() => "r -= 1;"
+      case Add(a) => s"r += $a;"
+      case Mul(a) => s"r *= $a;"
       case Halve() => "r = (r / 2) | 0;"
-      case Sub() => "r -= get_ltop();"
+      case StackAdd() => "r += get_ltop();"
+      case StackSub() => "r -= get_ltop();"
       case Reset() => "r = 0;"
       case MoveToLeft() => "ls.push(rs.pop());"
       case MoveToRight() => "rs.push(ls.pop());"

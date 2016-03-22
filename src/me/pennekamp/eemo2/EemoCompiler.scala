@@ -22,7 +22,8 @@ class EemoCompiler(val source: String) {
   }
 
   def compileToAsmJs(name: String, writer: Writer): Unit = {
-    val assembler: Assembler = new Assembler(ast, writer, name)
+    val optimizedAst = Optimizer.optimize(ast)
+    val assembler: Assembler = new Assembler(optimizedAst, writer, name)
     assembler.compile()
   }
 }
